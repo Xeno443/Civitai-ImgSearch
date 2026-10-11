@@ -51,8 +51,8 @@ Rows in the match list come in three forms:
 | Row | Meaning |
 |---|---|
 | `hands up  [159160]` | a Civitai tag and its ID |
-| `boob → breasts  [5148]` | "boob" is only an alias; selecting the row adds the tag "breasts" |
-| `tiddies  [173687]  (alias of breasts)` | a Civitai tag of its own that is also known as an alias of another tag |
+| `spectacles → glasses  [4149]` | "spectacles" is only an alias; selecting the row adds the tag "glasses" |
+| `blonde  [508]  (alias of blonde hair)` | a Civitai tag of its own that is also known as an alias of another tag |
 
 ## Tag data
 

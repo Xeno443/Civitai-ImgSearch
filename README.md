@@ -1,4 +1,4 @@
-# Civitai Tag URL Builder
+# Civitai Tag Search URL Builder
 
 A small local tool that turns tag names into a Civitai image search URL.
 

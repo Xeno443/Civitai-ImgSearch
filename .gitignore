@@ -1,0 +1,11 @@
+system/
+run.bat
+download.bat
+sources/
+data_old/
+data/work/
+data/tags_all.json
+data/empty_ids.json
+*.tmp
+__pycache__/
+CLAUDE.md

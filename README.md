@@ -72,9 +72,34 @@ Both steps can be stopped and continued at any time. The downloader waits 2 seco
 
 A small number of tags are deliberately left out of the tag files published here. The downloader does not filter, so an Update adds whatever Civitai has.
 
+## Rebuilding the good list
+
+`data/tags_good.json` is made from the full list by `build_good_tags.py`. An Update only adds tags to the full list, so run this afterwards if you want new tags to show up in the normal search.
+
+A tag goes into the good list when its name is in a tag-autocomplete CSV or it is on a trusted list. The CSV also supplies the popularity counts and the aliases.
+
+Put the inputs into a `sources` folder next to the scripts. That folder is ignored by git.
+
+| Input | Needed | What it is |
+|---|---|---|
+| `data/tags_all.json` | yes | the full tag list |
+| `sources/*.csv` | yes | one or more tag-autocomplete CSVs with rows of `name,category,post count,"alias,alias"`, as shipped with the common Danbooru and e621 autocomplete lists |
+| `sources/tags_*.json` | no | trusted tag lists in the same format as the full list; every tag in them counts as good |
+| `sources/blocklist.json` | no | tags to leave out, as `{"words": [...], "ids": [...], "names": [...]}` |
+
+```
+python build_good_tags.py --refresh-image-list
+python build_good_tags.py
+```
+
+The first command also downloads one trusted list, the tags Civitai files under "Image" (about 90 requests, a few minutes). The second builds from what is already on disk.
+
+`purge_tags.py` removes the tags on the block list from the full list. Without a block list it does nothing.
+
+The published good list was built with a combined Danbooru and e621 CSV, so a rebuild with a different CSV will differ somewhat.
+
 ## Good to know
 
 - The tag data comes from an undocumented Civitai endpoint. It can change or stop working without notice.
 - Some tags exist but return few or no images, because Civitai has replaced them with another tag.
 - The URL points at `civitai.red`. To use a different site, change `SITE` at the top of `tag_url_builder.py`.
-- `build_good_tags.py` and `purge_tags.py` are maintainer scripts for producing the published tag files. They need source files that are not part of this repository.

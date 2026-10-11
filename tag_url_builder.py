@@ -6,6 +6,7 @@ tag_downloader.py for that.
 
 import ctypes
 import tkinter as tk
+import webbrowser
 from tkinter import messagebox, ttk
 
 from tagdata import (ALL_TAGS_FILE, GOOD_TAGS_FILE, build_entries, label, load_good, load_tags,
@@ -71,8 +72,15 @@ class App:
 
         ttk.Label(frame, text="Search URL").grid(row=3, column=0, sticky="w", pady=(8, 0))
         self.url = tk.StringVar()
-        ttk.Entry(frame, textvariable=self.url, state="readonly").grid(
-            row=4, column=0, columnspan=2, sticky="ew", pady=(2, 8))
+        url_row = ttk.Frame(frame)
+        url_row.grid(row=4, column=0, columnspan=2, sticky="ew", pady=(2, 8))
+        url_row.columnconfigure(0, weight=1)
+        ttk.Entry(url_row, textvariable=self.url, state="readonly").grid(
+            row=0, column=0, sticky="ew")
+        self.open_button = ttk.Button(
+            url_row, text="Open in browser", command=lambda: webbrowser.open(self.url.get()))
+        self.open_button.grid(row=0, column=1, padx=(6, 0))
+        self.open_button.state(["disabled"])
 
         self.status = tk.StringVar()
         ttk.Label(frame, textvariable=self.status).grid(
@@ -158,6 +166,7 @@ class App:
         self.selected_list.delete(0, "end")
         self.selected_list.insert("end", *map(label, self.selected))
         self.url.set(build_url(self.selected))
+        self.open_button.state(["!disabled" if self.selected else "disabled"])
 
 
 def main():

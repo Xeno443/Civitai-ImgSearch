@@ -43,7 +43,7 @@ A clone contains the "good" tag list, which is usually all you need. It does not
 
 - Type part of a tag name. Matches are listed most-used first.
 - Press Enter or double-click a match to add it to the selected tags.
-- The search URL at the bottom updates as you add and remove tags. Select it and copy it.
+- The search URL at the bottom updates as you add and remove tags. Select it and copy it, or press **Open in browser**.
 - Tick **Search everything** to search the full tag list instead of the good one. The box is greyed out if the full list is not there.
 
 Rows in the match list come in three forms:

@@ -79,7 +79,7 @@ def load_empty_ids():
         return set()
 
 
-def save_empty_ids(ids):
+def save_empty_ids(ids, path=None):
     """Stored as [first, last] runs of consecutive ids, which is far shorter than one per id."""
     ranges = []
     for tag_id in sorted(ids):
@@ -87,7 +87,7 @@ def save_empty_ids(ids):
             ranges[-1][1] = tag_id
         else:
             ranges.append([tag_id, tag_id])
-    _write(EMPTY_IDS_FILE, f'{{"ranges": [\n{_rows(ranges)}\n]}}\n')
+    _write(path or EMPTY_IDS_FILE, f'{{"ranges": [\n{_rows(ranges)}\n]}}\n')
 
 
 def booru_name(text):

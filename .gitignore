@@ -1,6 +1,8 @@
 system/
 run.bat
 download.bat
+build_release.py
+release/
 sources/
 data_old/
 data/work/
